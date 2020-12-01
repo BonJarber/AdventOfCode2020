@@ -16,17 +16,16 @@ In this list, the two entries that sum to 2020 are 1721 and 299. Multiplying the
 
 
 def main():
-    values = []
     with open("input.txt") as in_file:
+        values = set()
         for line in in_file:
             curr = int(line)
-            if values == []:
-                values.append(curr)
+            values.add(curr)
+            inverse = 2020 - curr
+            if inverse in values:
+                return f"Success! The numbers were {inverse} and {curr}. The solution is {inverse * curr}"
             else:
-                for i in values:
-                    if i + curr == 2020:
-                        return f"Success! The numbers were {i} and {curr}. The solution is {i * curr}"
-                values.append(curr)
+                values.add(inverse)
 
     return "No solution found"
 
