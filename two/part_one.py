@@ -12,11 +12,27 @@ In the above example, 2 passwords are valid. The middle password, cdefg, is not;
 
 How many passwords are valid according to their policies?
 """
+import re
 from typing import List
 
 
-def solve_p1():
-    pass
+def solve_p1(passwords: List[str]):
+    total_valid = 0
+    parse_password_regex = "(\d+)-(\d+) ([a-z]): ([a-z]+)"
+    for password_rule in passwords:
+        m = re.match(parse_password_regex, password_rule)
+        min_val = m.group(1)
+        max_val = m.group(2)
+        letter = m.group(3)
+        password = m.group(4)
+        password_regex = (
+            f"^[^{letter}]*({letter}[^{letter}]*?){{{min_val},{max_val}}}[^{letter}]*$"
+        )
+        is_valid = re.match(password_regex, password)
+        if is_valid:
+            total_valid += 1
+
+    return total_valid
 
 
 def main():
