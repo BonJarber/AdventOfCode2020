@@ -18,10 +18,23 @@ def solve_p2(passwords: List[str]):
     parse_password_regex = "(\d+)-(\d+) ([a-z]): ([a-z]+)"
     for password_rule in passwords:
         m = re.match(parse_password_regex, password_rule)
-        min_val = m.group(1)
-        max_val = m.group(2)
+        index_1 = int(m.group(1))
+        index_2 = int(m.group(2))
         letter = m.group(3)
         password = m.group(4)
+        letter_appears = False
+
+        if len(password) >= index_1:
+            if password[index_1 - 1] == letter:
+                letter_appears = True
+        if len(password) >= index_2:
+            if password[index_2 - 1] == letter:
+                if letter_appears:
+                    continue
+                else:
+                    letter_appears = True
+        if letter_appears:
+            total_valid += 1
 
     return total_valid
 
