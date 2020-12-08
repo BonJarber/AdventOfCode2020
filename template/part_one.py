@@ -4,7 +4,7 @@
 from typing import List
 
 
-def solve_p1():
+def solve_p1(input: List[str]):
     pass
 
 
