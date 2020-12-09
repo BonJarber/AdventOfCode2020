@@ -4,7 +4,7 @@
 from typing import List
 
 
-def solve_p1(xmas_code: List[int]):
+def solve_p2(xmas_code: List[int]):
     window_size = 25
     window = []
     target = None
@@ -43,7 +43,7 @@ def main():
     with open("input.txt") as in_file:
         puzzle_input = in_file.readlines()
         int_list = [int(i) for i in puzzle_input]
-        return solve_p1(int_list)
+        return solve_p2(int_list)
 
 
 if __name__ == "__main__":
