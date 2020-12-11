@@ -2,7 +2,6 @@
 
 """
 import copy
-import numpy
 from typing import List
 
 
